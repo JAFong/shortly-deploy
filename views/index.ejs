@@ -1,3 +1,6 @@
+<script>
+  window.Templates = {};
+</script>
 <script id='layout' type='text/x-handlebars-template'>
   <div class='navigation'>
   <ul>
@@ -35,7 +38,6 @@
     new Shortly();
   });
 
-  window.Templates = {};
   $('[type="text/x-handlebars-template"]').each(function(index, div){
     Templates[div.id] = Handlebars.compile(div.innerHTML);
   });
