@@ -47,14 +47,14 @@ module.exports = function(grunt) {
 
 
       files: [
-        // Add filespec list here
+        './**/*.js'
       ],
       options: {
-        force: 'true',
         jshintrc: '.jshintrc',
         ignores: [
           'public/lib/**/*.js',
-          'public/dist/**/*.js'
+          'public/dist/**/*.js',
+          'node_modules/**/*.js'
         ]
       }
     },
@@ -121,6 +121,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'jshint',
     'concat',
     'uglify',
     'cssmin'
