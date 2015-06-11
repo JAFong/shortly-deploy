@@ -23,23 +23,23 @@ var UserSchema = new Schema({
 
 UserSchema.methods.comparePassword = function(attemptedPassword, callback) {
   console.log('Called');
-    bcrypt.compare(attemptedPassword, this.get('password'), function(err, isMatch) {
+    bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {
       callback(isMatch);
     });
   },
 
 UserSchema.methods.hashPassword = function(){
   var cipher = Promise.promisify(bcrypt.hash);
-  return cipher(this.get('password'), null, null).bind(this)
+  return cipher(this.password, null, null).bind(this)
     .then(function(hash) {
-      this.set('password', hash);
+      this.password = hash;
     });
 }
 
 UrlSchema.methods.createShortcode = function(){
       var shasum = crypto.createHash('sha1');
-      shasum.update(this.get('url'));
-      this.set('code', shasum.digest('hex').slice(0, 5));
+      shasum.update(this.url);
+      this.code = shasum.digest('hex').slice(0, 5);
     };
 
 exports.UrlSchema = UrlSchema;
@@ -48,6 +48,7 @@ db.once('open', function() {
 
 });
 
-
-
+// mongodb://localhost/shawtlyDB
 mongoose.connect('mongodb://MongoLab-2:oqYq2qrL3xqUJBCsktttgjAqPlBi5tP7mWds2kXCZNY-@ds036648.mongolab.com:36648/MongoLab-2');
+
+// mongoose.connect('mongodb://localhost/shawtlyDB');
