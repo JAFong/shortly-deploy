@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+var crypto = require('crypto');
 var Promise = require('bluebird');
 
 var db = mongoose.connection;
@@ -34,6 +35,12 @@ UserSchema.methods.hashPassword = function(){
       this.set('password', hash);
     });
 }
+
+UrlSchema.methods.createShortcode = function(){
+      var shasum = crypto.createHash('sha1');
+      shasum.update(this.get('url'));
+      this.set('code', shasum.digest('hex').slice(0, 5));
+    };
 
 exports.UrlSchema = UrlSchema;
 exports.UserSchema = UserSchema;

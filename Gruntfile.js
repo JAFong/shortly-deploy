@@ -72,7 +72,8 @@ module.exports = function(grunt) {
         files: [
           'app/**/*.js',
           'lib/*.js',
-          './*.js'
+          './*.js',
+          '/test/*.js'
 
         ],
         tasks: [
