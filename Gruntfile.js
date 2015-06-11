@@ -70,17 +70,21 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: [
-          'public/client/**/*.js',
-          'public/lib/**/*.js',
+          'app/**/*.js',
+          'lib/*.js',
+          './*.js'
+
         ],
         tasks: [
-          'concat',
-          'uglify'
+          'deploy'
         ]
       },
       css: {
-        files: 'public/*.css',
-        tasks: ['cssmin']
+        files: [
+                 'public/*.css',
+                 '!public/dist/*.css'
+                ],
+        tasks: ['deploy']
       }
     },
 
