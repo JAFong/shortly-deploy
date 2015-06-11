@@ -50,4 +50,4 @@ db.once('open', function() {
 
 
 
-mongoose.connect('mongodb://localhost/shawtlyDB');
+mongoose.connect('mongodb://MongoLab-2:oqYq2qrL3xqUJBCsktttgjAqPlBi5tP7mWds2kXCZNY-@ds036648.mongolab.com:36648/MongoLab-2');
