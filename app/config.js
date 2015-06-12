@@ -24,7 +24,7 @@ var UserSchema = new Schema({
 });
 
 UserSchema.pre('save', function(next){
-  var cipher = bluebird.promisify(bcrypt.hash);
+  var cipher = Promise.promisify(bcrypt.hash);
   return cipher(this.password, null, null).bind(this)
     .then(function(hash) {
       this.password = hash;
