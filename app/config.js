@@ -65,4 +65,3 @@ db.once('open', function() {
 var hostUri = process.env.MONGO_URI || 'mongodb://localhost/shawtlyDB';
 
 mongoose.connect(hostUri);
-// mongoose.connect('mongodb://localhost/shawtlyDB');
