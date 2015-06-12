@@ -8,6 +8,8 @@ var db = mongoose.connection;
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
+db.on('error', console.error.bind(console, 'connection error'));
+
 var UrlSchema = new Schema({
   url: String,
   base_url: String,
@@ -24,7 +26,11 @@ var UserSchema = new Schema({
 UserSchema.methods.comparePassword = function(attemptedPassword, callback) {
   console.log('Called');
     bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {
-      callback(isMatch);
+      if(err) {
+        callback(err);
+      } else {
+        callback(isMatch);
+      }
     });
   },
 
