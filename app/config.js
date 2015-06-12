@@ -24,12 +24,11 @@ var UserSchema = new Schema({
 });
 
 UserSchema.methods.comparePassword = function(attemptedPassword, callback) {
-  console.log('Called');
     bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {
       if(err) {
-        callback(err);
+        callback(err, null);
       } else {
-        callback(isMatch);
+        callback(null, isMatch);
       }
     });
   },
@@ -54,7 +53,6 @@ db.once('open', function() {
 
 });
 
-// mongodb://localhost/shawtlyDB
-mongoose.connect('mongodb://MongoLab-2:oqYq2qrL3xqUJBCsktttgjAqPlBi5tP7mWds2kXCZNY-@ds036648.mongolab.com:36648/MongoLab-2');
 
+mongoose.connect('mongodb://MongoLab-2:oqYq2qrL3xqUJBCsktttgjAqPlBi5tP7mWds2kXCZNY-@ds036648.mongolab.com:36648/MongoLab-2');
 // mongoose.connect('mongodb://localhost/shawtlyDB');
